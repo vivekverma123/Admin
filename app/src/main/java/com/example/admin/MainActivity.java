@@ -1,34 +1,44 @@
 package com.example.admin;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.model.FlatOwner;
+import com.example.model.Month;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.GregorianCalendar;
 
 public class MainActivity extends AppCompatActivity {
 
     Context context;
+    public static int tokenInt;
+    public static String tokenString1,tokenString2;
+
+    String[] monthName = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-
+        generateMonth();
 
     }
 
@@ -142,4 +152,47 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog dialog = alert.create();
         dialog.show();
     }
+
+    public void generateMonth()
+    {
+        DatabaseReference d1 = FirebaseDatabase.getInstance().getReference("Months");
+        d1.addValueEventListener(new ValueEventListener() {
+
+
+            String s1 = "";
+            int month = -1;
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot d1 : dataSnapshot.getChildren()) {
+                    Month m1 = d1.getValue(Month.class);
+                    s1 = m1.getId();
+                    month = m1.getM();
+                }
+
+                //Toast.makeText(MainActivity.this,s1,Toast.LENGTH_SHORT).show();
+
+                GregorianCalendar Calendar = new GregorianCalendar();
+                int curr_month = Calendar.getInstance().get(Calendar.MONTH) + 1;
+
+                if(month==-1 || (curr_month<=12 && month + 1==curr_month) || (curr_month==1 && month==12))
+                {
+                    Month m1 = new Month();
+                    m1.setBills();
+                    m1.setM(curr_month);
+                    m1.setY(Calendar.getInstance().get(Calendar.YEAR));
+                    m1.setTitle(monthName[curr_month-1] + ", " + m1.getY());
+
+                    DatabaseReference d1 = FirebaseDatabase.getInstance().getReference("Months");
+                    String id = d1.push().getKey();
+                    m1.setId(id);
+                    d1.child(id).setValue(m1);
+                }
+
+            }
+
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 }
