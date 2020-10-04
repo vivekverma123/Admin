@@ -9,12 +9,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.model.DueRecord;
 import com.example.model.FlatOwner;
 import com.example.model.Month;
 import com.google.firebase.database.DataSnapshot;
@@ -36,7 +38,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_main);
+
+
+
         init();
         generateMonth();
 
@@ -68,6 +78,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, ViewAllActivity.class));
             }
         });
+
+        Button btn4 = findViewById(R.id.initialdue);
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDialogBox3(view);
+            }
+        });
     }
 
     public void showDialogBox1(View view)
@@ -81,9 +99,9 @@ public class MainActivity extends AppCompatActivity {
         alert.setPositiveButton("Add Flat Owner", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                EditText e1 = alert_layout.findViewById(R.id.flatno);
+                EditText e1 = alert_layout.findViewById(R.id.flatno1);
                 EditText e2 = alert_layout.findViewById(R.id.name);
-                EditText e3 = alert_layout.findViewById(R.id.mobno);
+                EditText e3 = alert_layout.findViewById(R.id.due_amt);
 
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myRef = database.getReference();
@@ -121,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
         final View alert_layout = getLayoutInflater().inflate(R.layout.remove_dialog,null);
 
         final AlertDialog.Builder alert = new AlertDialog.Builder(context);
-        alert.setTitle("Enter the Flat Number to be removed");
+        alert.setTitle("Remove Flat Owner");
         alert.setView(alert_layout);
 
         alert.setPositiveButton("Remove", new DialogInterface.OnClickListener() {
@@ -137,6 +155,81 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else {
                     myRef.child("FlatOwners").child(e1.getText().toString()).removeValue();
+                }
+            }
+        });
+
+        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                dialogInterface.dismiss();
+            }
+        });
+
+        AlertDialog dialog = alert.create();
+        dialog.show();
+    }
+
+    public void showDialogBox3(View view)
+    {
+        final View alert_layout = getLayoutInflater().inflate(R.layout.due_dialog,null);
+
+        final AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        alert.setTitle("Initialise Due");
+        alert.setView(alert_layout);
+
+        alert.setPositiveButton("Add Record", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                EditText e1 = alert_layout.findViewById(R.id.flatno1);
+                EditText e2 = alert_layout.findViewById(R.id.due_amt);
+
+                final String flatNo = e1.getText().toString();
+                int amt1 = 0;
+                amt1 = Integer.parseInt(e2.getText().toString());
+                final int amt = amt1;
+                if(flatNo.length()==0)
+                {
+                    Toast.makeText(MainActivity.this,"Flat Number can't be empty",Toast.LENGTH_SHORT).show();
+                }
+                else {
+
+                    DatabaseReference d1 = FirebaseDatabase.getInstance().getReference();
+                    d1.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.child("FlatOwners").child(flatNo).exists())
+                            {
+                                int amt1 = 0, amt2 = 0;
+                                if(dataSnapshot.child("TotalDue").child(flatNo).exists())
+                                {
+                                    amt1 = dataSnapshot.child("TotalDue").child(flatNo).getValue(Integer.class);
+                                }
+                                if(dataSnapshot.child("InitialDue").child(flatNo).exists())
+                                {
+                                    amt2 = dataSnapshot.child("InitialDue").child(flatNo).getValue(Integer.class);
+                                }
+
+                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                DatabaseReference myRef = database.getReference();
+                                myRef.child("TotalDue").child(flatNo).setValue(amt1 - amt2 + amt);
+                                myRef.child("InitialDue").child(flatNo).setValue(amt);
+                            }
+                            else
+                            {
+                                Toast.makeText(MainActivity.this,"Flat Number is not registered",Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+
+
                 }
             }
         });
