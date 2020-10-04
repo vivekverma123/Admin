@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "497907494864",
+    "firebase_url": "https://housing-society-appliction.firebaseio.com",
+    "project_id": "housing-society-appliction",
+    "storage_bucket": "housing-society-appliction.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:497907494864:android:8f4c787944fabd5b02d3d5",
+        "android_client_info": {
+          "package_name": "com.example.admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "497907494864-l0sp6988s28ik9euj5jredrfuqunn282.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAi_c1Smd5GLEys82n77ifPo8yC7Dhgr1I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "497907494864-l0sp6988s28ik9euj5jredrfuqunn282.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
