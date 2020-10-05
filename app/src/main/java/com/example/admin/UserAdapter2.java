@@ -1,11 +1,13 @@
 package com.example.admin;
 
 import android.content.Context;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,16 +17,23 @@ import java.util.ArrayList;
 
 import com.example.model.FlatOwner;
 import com.example.model.Request;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class UserAdapter2 extends ArrayAdapter<Request>
 {
 
     Context context;
+    DataSnapshot snapshot;
 
     public UserAdapter2(@NonNull Context context, ArrayList<Request> request)
     {
         super(context, 0,request);
         this.context = context;
+
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -37,20 +46,15 @@ public class UserAdapter2 extends ArrayAdapter<Request>
         // Lookup view for data population
         TextView flat = convertView.findViewById(R.id.flat);
         TextView amt = convertView.findViewById(R.id.amt_2);
-        Button b1 = convertView.findViewById(R.id.approve_btn);
+        TextView e2 = convertView.findViewById(R.id.rem_client);
 
         flat.setText(request.getFlatNo());
         amt.setText("" + request.getAmt());
+        e2.setText(request.getRemarkClient());
 
-        b1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, request.getFlatNo() + " " + request.getAmt(),Toast.LENGTH_SHORT).show();
-            }
-        });
+
 
         // Return the completed view to render on screen
         return convertView;
     }
-
 }

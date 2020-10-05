@@ -3,10 +3,40 @@ package com.example.model;
 public class Request {
     private String flatNo;
     private int amt;
+    private String remarkClient;
+    private String remarkAdmin;
+    boolean status;
 
-    public Request(String flatNo, int amt) {
+    public String getRemarkClient() {
+        return remarkClient;
+    }
+
+    public void setRemarkClient(String remarkClient) {
+        this.remarkClient = remarkClient;
+    }
+
+    public String getRemarkAdmin() {
+        return remarkAdmin;
+    }
+
+    public void setRemarkAdmin(String remarkAdmin) {
+        this.remarkAdmin = remarkAdmin;
+    }
+
+    public boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public Request(String flatNo, int amt, String remarkClient, String remarkAdmin, boolean status) {
         this.flatNo = flatNo;
         this.amt = amt;
+        this.remarkClient = remarkClient;
+        this.remarkAdmin = remarkAdmin;
+        this.status = status;
     }
 
     public Request() {
