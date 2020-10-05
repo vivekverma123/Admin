@@ -49,5 +49,30 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewall"
-        app:layout_constraintVertical_bias="0.087" />
+        app:layout_constraintVertical_bias="0.085" />
+
+    <Button
+        android:id="@+id/initialbal"
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:text="initialise balance"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/initialdue"
+        app:layout_constraintVertical_bias="0.111" />
+
+    <Button
+        android:id="@+id/app_main_req"
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:text="approve maintenance requests"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/initialbal"
+        app:layout_constraintVertical_bias="0.144" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

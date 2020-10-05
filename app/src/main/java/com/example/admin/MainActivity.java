@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.model.DueRecord;
 import com.example.model.FlatOwner;
+import com.example.model.Maintenance;
 import com.example.model.Month;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 public class MainActivity extends AppCompatActivity {
@@ -84,6 +86,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showDialogBox3(view);
+            }
+        });
+
+        Button btn5 = findViewById(R.id.initialbal);
+        btn5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDialogBox4(view);
+            }
+        });
+
+        Button btn6 = findViewById(R.id.app_main_req);
+        btn6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,ApproveRequest.class));
             }
         });
     }
@@ -246,16 +264,50 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    void showDialogBox4(View view)
+    {
+        final View alert_layout = getLayoutInflater().inflate(R.layout.bal_dialog,null);
+
+        final AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        alert.setTitle("Initialise Balance");
+        alert.setView(alert_layout);
+
+        alert.setPositiveButton("Initialise", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                EditText e1 = alert_layout.findViewById(R.id.balamt);
+
+                int x = Integer.parseInt(e1.getText().toString());
+
+                DatabaseReference d1 = FirebaseDatabase.getInstance().getReference();
+                d1.child("InitialBalance").setValue(x);
+
+                }
+            }
+        );
+
+        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                dialogInterface.dismiss();
+            }
+        });
+
+        AlertDialog dialog = alert.create();
+        dialog.show();
+    }
+
     public void generateMonth()
     {
-        DatabaseReference d1 = FirebaseDatabase.getInstance().getReference("Months");
+        DatabaseReference d1 = FirebaseDatabase.getInstance().getReference();
         d1.addValueEventListener(new ValueEventListener() {
 
 
             String s1 = "";
             int month = -1;
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot d1 : dataSnapshot.getChildren()) {
+                for(DataSnapshot d1 : dataSnapshot.child("Months").getChildren()) {
                     Month m1 = d1.getValue(Month.class);
                     s1 = m1.getId();
                     month = m1.getM();
@@ -274,10 +326,21 @@ public class MainActivity extends AppCompatActivity {
                     m1.setY(Calendar.getInstance().get(Calendar.YEAR));
                     m1.setTitle(monthName[curr_month-1] + ", " + m1.getY());
 
-                    DatabaseReference d1 = FirebaseDatabase.getInstance().getReference("Months");
-                    String id = d1.push().getKey();
+                    DatabaseReference d1 = FirebaseDatabase.getInstance().getReference();
+                    String id = d1.child("Months").push().getKey();
                     m1.setId(id);
-                    d1.child(id).setValue(m1);
+
+                    d1.child("Months").child(id).setValue(m1);
+                    d1.child("CurrentMonth").setValue(id);
+
+                    for(DataSnapshot d2 : dataSnapshot.child("FlatOwners").getChildren())
+                    {
+                        Toast.makeText(MainActivity.this,"Here",Toast.LENGTH_SHORT).show();
+                        FlatOwner f1 = d2.getValue(FlatOwner.class);
+                        Maintenance m2 = new Maintenance(f1.getFlatNo(),0);
+                        d1.child("MaintenanceRecord").child(id).child(f1.getFlatNo()).setValue(m2);
+                    }
+
                 }
 
             }

@@ -9,7 +9,7 @@ public class Month
     private String Id;
     private String Title;
     private int M,Y;
-    private int Security,Sweeper,Gardener,Electricity,GarbageCollection,Other,Contr;
+    private int Security,Sweeper,Gardener,Electricity,GarbageCollection,Other,Contr,AmtOb;
     private String Description;
 
     public int getContr() {
@@ -20,11 +20,19 @@ public class Month
         Contr = contr;
     }
 
-    public Month(String id, String title, int m, int y, int security, int sweeper, int gardener, int electricity, int garbageCollection, int other, int contr, String description) {
-        this.Id = id;
-        this.Title = title;
-        this.M = m;
-        this.Y = y;
+    public int getAmtOb() {
+        return AmtOb;
+    }
+
+    public void setAmtOb(int amtOb) {
+        AmtOb = amtOb;
+    }
+
+    public Month(String id, String title, int m, int y, int security, int sweeper, int gardener, int electricity, int garbageCollection, int other, int contr, int amtOb, String description) {
+        Id = id;
+        Title = title;
+        M = m;
+        Y = y;
         Security = security;
         Sweeper = sweeper;
         Gardener = gardener;
@@ -32,7 +40,8 @@ public class Month
         GarbageCollection = garbageCollection;
         Other = other;
         Contr = contr;
-        this.Description = description;
+        AmtOb = amtOb;
+        Description = description;
     }
 
     public String getId() {
@@ -56,6 +65,7 @@ public class Month
         GarbageCollection = 0;
         Other = 0;
         Contr = 0;
+        AmtOb = 0;
         this.Description = "";
     }
 
