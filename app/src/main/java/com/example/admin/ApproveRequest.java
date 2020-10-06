@@ -91,6 +91,7 @@ public class ApproveRequest extends AppCompatActivity {
         d1.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 setSnapshot(dataSnapshot);
             }
 
@@ -162,7 +163,6 @@ public class ApproveRequest extends AppCompatActivity {
                             d1.child("MaintenanceRecord").child(id).child(request.getFlatNo()).setValue(m1);
                             d1.child("Months").child(id).setValue(m2);
 
-                            refresh();
                         }
                         catch(Exception e1)
                         {

@@ -104,6 +104,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this,ApproveRequest.class));
             }
         });
+
+        Button btn7 = findViewById(R.id.view_months);
+        btn7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,ViewMonths.class));
+            }
+        });
     }
 
     public void showDialogBox1(View view)

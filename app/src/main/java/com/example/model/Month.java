@@ -1,15 +1,14 @@
 package com.example.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-
-
-public class Month
+public class Month implements Serializable
 {
     private String Id;
     private String Title;
     private int M,Y;
-    private int Security,Sweeper,Gardener,Electricity,GarbageCollection,Other,Contr,AmtOb;
+    private int Security,Sweeper,Gardener,Electricity,GarbageCollection,Other,Contr,AmtOb,totExp;
     private String Description;
 
     public int getContr() {
@@ -28,7 +27,7 @@ public class Month
         AmtOb = amtOb;
     }
 
-    public Month(String id, String title, int m, int y, int security, int sweeper, int gardener, int electricity, int garbageCollection, int other, int contr, int amtOb, String description) {
+    public Month(String id, String title, int m, int y, int security, int sweeper, int gardener, int electricity, int garbageCollection, int other, int contr, int amtOb, String description,int totExp) {
         Id = id;
         Title = title;
         M = m;
@@ -42,6 +41,7 @@ public class Month
         Contr = contr;
         AmtOb = amtOb;
         Description = description;
+        this.totExp = totExp;
     }
 
     public String getId() {
@@ -66,6 +66,7 @@ public class Month
         Other = 0;
         Contr = 0;
         AmtOb = 0;
+        totExp = 0;
         this.Description = "";
     }
 
@@ -148,4 +149,15 @@ public class Month
     public void setDescription(String description) {
         this.Description = description;
     }
+
+    public int getTotExp()
+    {
+        totExp = Security + Sweeper + Gardener + Electricity + GarbageCollection + Other;
+        return totExp;
+    }
+
+    public void setTotExp(int totExp) {
+        this.totExp = totExp;
+    }
+
 }

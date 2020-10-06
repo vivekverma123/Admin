@@ -75,4 +75,16 @@
         app:layout_constraintTop_toBottomOf="@+id/initialbal"
         app:layout_constraintVertical_bias="0.144" />
 
+    <Button
+        android:id="@+id/view_months"
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:text="view/edit monthly record"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_main_req"
+        app:layout_constraintVertical_bias="0.185" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

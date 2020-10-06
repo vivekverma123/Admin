@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ApproveRequest"></activity>
+        <activity android:name=".ApproveRequest" />
         <activity android:name=".EditMonth" />
         <activity android:name=".ViewMonths" />
         <activity android:name=".ViewAllActivity" />
