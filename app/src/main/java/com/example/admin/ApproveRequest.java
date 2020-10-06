@@ -7,14 +7,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.model.FlatOwner;
+import com.example.model.Maintenance;
+import com.example.model.Month;
 import com.example.model.Request;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -48,7 +52,9 @@ public class ApproveRequest extends AppCompatActivity {
         l1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                showDialogBox1();
+
+                Request request = (Request)parent.getItemAtPosition(position);
+                showDialogBox1(request);
             }
         });
 
@@ -100,7 +106,7 @@ public class ApproveRequest extends AppCompatActivity {
         this.snapshot = snapshot;
     }
 
-    void showDialogBox1()
+    void showDialogBox1(Request request)
     {
         final View alert_layout = getLayoutInflater().inflate(R.layout.dialog_approve,null);
 
@@ -108,10 +114,60 @@ public class ApproveRequest extends AppCompatActivity {
         alert.setTitle("Approve/Reject Request");
         alert.setView(alert_layout);
 
+
+        final Request r1 = request;
+
         alert.setPositiveButton("Approve", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                    public void onClick(DialogInterface dialogInterface, int i)
+                    {
+                        //Toast.makeText(context,snapshot.child("CurrentMonth").getValue(String.class),Toast.LENGTH_SHORT).show();
 
+                        try {
+
+                            EditText e1 = alert_layout.findViewById(R.id.remark_admin);
+                            String s1 = e1.getText().toString();
+
+                            Request request = r1;
+
+                            request.setStatus(true);
+                            request.setRemarkAdmin("APPROVED: " + s1);
+
+                            int amt = request.getAmt();
+
+                            DatabaseReference d1 = FirebaseDatabase.getInstance().getReference();
+
+                            String id = snapshot.child("CurrentMonth").getValue(String.class);
+
+                            Maintenance m1 = snapshot.child("MaintenanceRecord").child(id).child(request.getFlatNo()).getValue(Maintenance.class);
+
+                            m1.setAmt_paid(m1.getAmt_paid() + amt);
+
+                            Month m2 = snapshot.child("Months").child(id).getValue(Month.class);
+
+                            Toast.makeText(ApproveRequest.this,"" + m1.getAmt_paid(),Toast.LENGTH_SHORT).show();
+
+                            int amt2 = m2.getContr();
+
+                            if (m1.getAmt_paid() < amt2) {
+                                m1.setStatus(1);
+                            } else if (m1.getAmt_paid() == amt2)
+                            {
+                                m1.setStatus(2);
+                            }
+
+                            m2.setAmtOb(m2.getAmtOb() + amt);
+
+                            d1.child("Requests").child(request.getId()).setValue(request);
+                            d1.child("MaintenanceRecord").child(id).child(request.getFlatNo()).setValue(m1);
+                            d1.child("Months").child(id).setValue(m2);
+
+                            refresh();
+                        }
+                        catch(Exception e1)
+                        {
+                            Toast.makeText(ApproveRequest.this,e1.toString(),Toast.LENGTH_SHORT).show();
+                        }
 
                     }
                 }
@@ -119,9 +175,22 @@ public class ApproveRequest extends AppCompatActivity {
 
         alert.setNegativeButton("Reject", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+            public void onClick(DialogInterface dialogInterface, int i)
+            {
+                EditText e1 = alert_layout.findViewById(R.id.remark_admin);
+                String s1 = e1.getText().toString();
+
+                Request request = r1;
+
+                request.setStatus(true);
+                request.setRemarkAdmin("REJECTED: " + s1);
+
+                DatabaseReference d1 = FirebaseDatabase.getInstance().getReference();
+                d1.child("Requests").child(request.getId()).setValue(request);
 
                 dialogInterface.dismiss();
+
+                refresh();
             }
         });
 

@@ -6,6 +6,24 @@ public class Request {
     private String remarkClient;
     private String remarkAdmin;
     boolean status;
+    private String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Request(String flatNo, int amt, String remarkClient, String remarkAdmin, boolean status, String id) {
+        this.flatNo = flatNo;
+        this.amt = amt;
+        this.remarkClient = remarkClient;
+        this.remarkAdmin = remarkAdmin;
+        this.status = status;
+        this.id = id;
+    }
 
     public String getRemarkClient() {
         return remarkClient;
@@ -31,13 +49,7 @@ public class Request {
         this.status = status;
     }
 
-    public Request(String flatNo, int amt, String remarkClient, String remarkAdmin, boolean status) {
-        this.flatNo = flatNo;
-        this.amt = amt;
-        this.remarkClient = remarkClient;
-        this.remarkAdmin = remarkAdmin;
-        this.status = status;
-    }
+
 
     public Request() {
     }
