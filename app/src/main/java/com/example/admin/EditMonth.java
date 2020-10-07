@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,7 +24,8 @@ import java.util.concurrent.TimeUnit;
 
 public class EditMonth extends AppCompatActivity {
 
-    DataSnapshot snapshot;
+    private DataSnapshot snapshot;
+    private Month m1;
 
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -41,14 +44,13 @@ public class EditMonth extends AppCompatActivity {
 
 
         Intent i1 = getIntent();
-        Month m1 = (Month)i1.getSerializableExtra("Month");
-        init(m1);
-
+        m1 = (Month)i1.getSerializableExtra("Month");
+        init();
 
 
     }
 
-    public void init(Month m1)
+    public void init()
     {
         try {
 
@@ -97,6 +99,69 @@ public class EditMonth extends AppCompatActivity {
         {
             Toast.makeText(EditMonth.this,e1.toString(),Toast.LENGTH_SHORT).show();
         }
+
+        Button b1 = findViewById(R.id.calc);
+        Button b2 = findViewById(R.id.update);
+
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                TextView amt1 = findViewById(R.id.amt1);
+                TextView amt2 = findViewById(R.id.amt2);
+                EditText amt3 = findViewById(R.id.amt3);
+                EditText amt4 = findViewById(R.id.amt4);
+                EditText amt5 = findViewById(R.id.amt5);
+                EditText amt6 = findViewById(R.id.amt6);
+                EditText amt7 = findViewById(R.id.amt7);
+                EditText amt8 = findViewById(R.id.amt8);
+                EditText desc = findViewById(R.id.description1);
+                TextView amt9 = findViewById(R.id.amt9);
+
+                int amt = Integer.parseInt(amt3.getText().toString()) + Integer.parseInt(amt4.getText().toString()) + Integer.parseInt(amt5.getText().toString()) + Integer.parseInt(amt6.getText().toString()) + Integer.parseInt(amt7.getText().toString()) + Integer.parseInt(amt8.getText().toString());
+
+                amt9.setText(amt + "");
+            }
+        });
+
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                TextView amt1 = findViewById(R.id.amt1);
+                TextView amt2 = findViewById(R.id.amt2);
+                EditText amt3 = findViewById(R.id.amt3);
+                EditText amt4 = findViewById(R.id.amt4);
+                EditText amt5 = findViewById(R.id.amt5);
+                EditText amt6 = findViewById(R.id.amt6);
+                EditText amt7 = findViewById(R.id.amt7);
+                EditText amt8 = findViewById(R.id.amt8);
+                EditText desc = findViewById(R.id.description1);
+                TextView amt9 = findViewById(R.id.amt9);
+
+                String desc1 = desc.getText().toString();
+
+                int amt = Integer.parseInt(amt3.getText().toString()) + Integer.parseInt(amt4.getText().toString()) + Integer.parseInt(amt5.getText().toString()) + Integer.parseInt(amt6.getText().toString()) + Integer.parseInt(amt7.getText().toString()) + Integer.parseInt(amt8.getText().toString());
+
+                amt9.setText(amt + "");
+
+                m1.setElectricity(Integer.parseInt(amt3.getText().toString()));
+                m1.setGarbageCollection(Integer.parseInt(amt4.getText().toString()));
+                m1.setGardener( Integer.parseInt(amt5.getText().toString()));
+                m1.setSecurity(Integer.parseInt(amt6.getText().toString()));
+                m1.setSweeper(Integer.parseInt(amt7.getText().toString()));
+                m1.setOther(Integer.parseInt(amt8.getText().toString()));
+                m1.setDescription(desc1);
+                m1.getTotExp();
+
+                DatabaseReference d1 = FirebaseDatabase.getInstance().getReference();
+                d1.child("Months").child(m1.getId()).setValue(m1);
+
+                Toast.makeText(EditMonth.this,"Database updated successfully",Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
     }
 
     public void refresh()

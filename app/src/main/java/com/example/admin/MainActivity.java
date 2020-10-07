@@ -112,6 +112,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this,ViewMonths.class));
             }
         });
+
+        Button btn8 = findViewById(R.id.app_advanc_req);
+        btn8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,ApproveAdvanceRequest.class));
+            }
+        });
     }
 
     public void showDialogBox1(View view)

@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/linear2"
+        android:id="@+id/linear1"
         android:layout_width="0dp"
         android:layout_height="44dp"
         android:layout_margin="10dp"
@@ -34,6 +34,7 @@
             android:text="Amount" />
 
         <TextView
+            android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="4"
@@ -43,14 +44,14 @@
     </LinearLayout>
 
     <ListView
-        android:id="@+id/list_req2"
+        android:id="@+id/list_req"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linear2"
-        app:layout_constraintVertical_bias="0.027" />
+        app:layout_constraintTop_toBottomOf="@+id/linear1"
+        app:layout_constraintVertical_bias="0.016" />
 </androidx.constraintlayout.widget.ConstraintLayout>

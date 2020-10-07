@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.154" />
+        app:layout_constraintVertical_bias="0.05" />
 
     <Button
         android:id="@+id/removeFlatOwner"
@@ -25,8 +25,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.262" />
+        app:layout_constraintTop_toBottomOf="@+id/addFlatOwner"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/viewall"
@@ -36,8 +36,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.371" />
+        app:layout_constraintTop_toBottomOf="@+id/removeFlatOwner"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/initialdue"
@@ -49,7 +49,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewall"
-        app:layout_constraintVertical_bias="0.085" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/initialbal"
@@ -61,7 +61,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/initialdue"
-        app:layout_constraintVertical_bias="0.111" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/app_main_req"
@@ -70,10 +70,9 @@
         android:text="approve maintenance requests"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/initialbal"
-        app:layout_constraintVertical_bias="0.144" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/view_months"
@@ -82,9 +81,19 @@
         android:text="view/edit monthly record"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/app_main_req"
-        app:layout_constraintVertical_bias="0.185" />
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/app_advanc_req"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="approve advance pay request"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_months"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
