@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -16,8 +15,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.model.FlatOwner;
-import com.example.model.Maintenance;
 import com.example.model.Month;
 import com.example.model.Request;
 import com.google.firebase.database.DataSnapshot;
@@ -28,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class ApproveRequest extends AppCompatActivity {
+public class ApproveDueRequest extends AppCompatActivity {
 
     ListView l1;
     DataSnapshot snapshot;
@@ -42,54 +39,46 @@ public class ApproveRequest extends AppCompatActivity {
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setContentView(R.layout.activity_approve_request);
+        setContentView(R.layout.activity_approve_due_request);
 
         refresh();
 
-        context = ApproveRequest.this;
+        context = ApproveDueRequest.this;
 
-        try {
+        l1 = findViewById(R.id.list_req3);
+        l1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-
-            l1 = findViewById(R.id.list_req2);
-            l1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                    Request request = (Request) parent.getItemAtPosition(position);
-                    showDialogBox1(request);
-                }
-            });
+                Request request = (Request)parent.getItemAtPosition(position);
+                showDialogBox1(request);
+            }
+        });
 
 
-            DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
-            DatabaseReference ownerRef = myRef.child("Requests");
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference ownerRef = myRef.child("DueRequests");
 
-            ownerRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        ownerRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                    ArrayList<Request> f1 = new ArrayList<>();
-                    for (DataSnapshot d1 : dataSnapshot.getChildren()) {
-                        Request request = d1.getValue(Request.class);
-                        if (request.getStatus() == false) {
-                            f1.add(request);
-                        }
+                ArrayList<Request> f1 = new ArrayList<>();
+                for (DataSnapshot d1 : dataSnapshot.getChildren()) {
+                    Request request = d1.getValue(Request.class);
+                    if(request.getStatus()==false) {
+                        f1.add(request);
                     }
-                    UserAdapter2 u1 = new UserAdapter2(ApproveRequest.this, f1);
-                    l1.setAdapter(u1);
                 }
+                UserAdapter2 u1 = new UserAdapter2(ApproveDueRequest.this,f1);
+                l1.setAdapter(u1);
+            }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                }
-            });
-        }
-        catch(Exception e1)
-        {
-            Toast.makeText(ApproveRequest.this,e1.toString(),Toast.LENGTH_SHORT);
-        }
+            }
+        });
 
     }
 
@@ -142,37 +131,28 @@ public class ApproveRequest extends AppCompatActivity {
                             request.setStatus(true);
                             request.setRemarkAdmin("APPROVED: " + s1);
 
-                            int amt = request.getAmt();
-
-                            DatabaseReference d1 = FirebaseDatabase.getInstance().getReference();
-
-                            String id = r1.getId_month();
-
-                            Maintenance m1 = snapshot.child("MaintenanceRecord").child(id).child(request.getFlatNo()).getValue(Maintenance.class);
-
-                            m1.setAmt_paid(m1.getAmt_paid() + amt);
-
-                            Month m2 = snapshot.child("Months").child(id).getValue(Month.class);
-
-                            int amt2 = m2.getContr();
-
-                            if (m1.getAmt_paid() < amt2) {
-                                m1.setStatus(1);
-                            } else if (m1.getAmt_paid() == amt2)
+                            int amt2;
+                            if(snapshot.child("TotalDue").child(r1.getFlatNo()).exists()==false)
                             {
-                                m1.setStatus(2);
+                                amt2 = 0;
+                            }
+                            else
+                            {
+                                amt2 = snapshot.child("TotalDue").child(r1.getFlatNo()).getValue(Integer.class);
                             }
 
-                            m2.setAmtOb(m2.getAmtOb() + amt);
+                            DatabaseReference d1 = FirebaseDatabase.getInstance().getReference();
+                            d1.child("TotalDue").child(r1.getFlatNo()).setValue(amt2 - r1.getAmt());
+                            d1.child("DueRequests").child(r1.getId()).setValue(r1);
 
-                            d1.child("Requests").child(request.getId()).setValue(request);
-                            d1.child("MaintenanceRecord").child(id).child(request.getFlatNo()).setValue(m1);
-                            d1.child("Months").child(id).setValue(m2);
+                            Month m2 = snapshot.child("Months").child(r1.getId_month()).getValue(Month.class);
+                            m2.setAmtOb(m2.getAmtOb() + r1.getAmt());
+                            d1.child("Months").child(r1.getId_month()).setValue(m2);
 
                         }
                         catch(Exception e1)
                         {
-                            Toast.makeText(ApproveRequest.this,e1.toString(),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ApproveDueRequest.this,e1.toString(),Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -192,7 +172,7 @@ public class ApproveRequest extends AppCompatActivity {
                 request.setRemarkAdmin("REJECTED: " + s1);
 
                 DatabaseReference d1 = FirebaseDatabase.getInstance().getReference();
-                d1.child("Requests").child(request.getId()).setValue(request);
+                d1.child("DueRequests").child(request.getId()).setValue(request);
 
                 dialogInterface.dismiss();
 
@@ -203,5 +183,4 @@ public class ApproveRequest extends AppCompatActivity {
         AlertDialog dialog = alert.create();
         dialog.show();
     }
-
 }

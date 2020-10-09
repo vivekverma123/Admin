@@ -40,18 +40,6 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/initialdue"
-        android:layout_width="wrap_content"
-        android:layout_height="44dp"
-        android:text="Initialise Due"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewall"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
         android:id="@+id/initialbal"
         android:layout_width="wrap_content"
         android:layout_height="44dp"
@@ -60,7 +48,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/initialdue"
+        app:layout_constraintTop_toBottomOf="@+id/viewall"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
@@ -94,6 +82,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view_months"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.132" />
+
+    <Button
+        android:id="@+id/appr_due_req"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="Approve due request"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_advanc_req"
+        app:layout_constraintVertical_bias="0.185" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

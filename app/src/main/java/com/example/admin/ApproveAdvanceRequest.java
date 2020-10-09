@@ -41,13 +41,13 @@ public class ApproveAdvanceRequest extends AppCompatActivity {
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setContentView(R.layout.activity_approve_request);
+        setContentView(R.layout.activity_approve_advance_request);
 
         refresh();
 
         context = ApproveAdvanceRequest.this;
 
-        l1 = findViewById(R.id.list_req2);
+        l1 = findViewById(R.id.list_req);
         l1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -147,6 +147,10 @@ public class ApproveAdvanceRequest extends AppCompatActivity {
                             d1.child("AdvancedAmount").child(r1.getFlatNo()).setValue(r1.getAmt() + amt2);
                             d1.child("AdvancePayRequests").child(r1.getId()).setValue(r1);
 
+                            Month m2 = snapshot.child("Months").child(r1.getId_month()).getValue(Month.class);
+                            m2.setAmtOb(m2.getAmtOb() + r1.getAmt());
+                            d1.child("Months").child(r1.getId_month()).setValue(m2);
+
                         }
                         catch(Exception e1)
                         {
@@ -170,7 +174,7 @@ public class ApproveAdvanceRequest extends AppCompatActivity {
                 request.setRemarkAdmin("REJECTED: " + s1);
 
                 DatabaseReference d1 = FirebaseDatabase.getInstance().getReference();
-                d1.child("Requests").child(request.getId()).setValue(request);
+                d1.child("AdvancePayRequests").child(request.getId()).setValue(request);
 
                 dialogInterface.dismiss();
 
