@@ -53,6 +53,10 @@ public class UserAdapter3 extends ArrayAdapter<Month>
         if(position%2==0) {
             convertView.setBackgroundColor(Color.parseColor("#C0D6E4"));
         }
+        else
+        {
+            convertView.setBackgroundColor(Color.WHITE);
+        }
 
         return convertView;
     }

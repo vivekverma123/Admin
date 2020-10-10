@@ -267,11 +267,37 @@
                     app:layout_constraintStart_toStartOf="parent" />
             </FrameLayout>
 
-            <Button
+            <FrameLayout
+                android:id="@+id/frame4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#FFFFFF" />
+                android:background="@drawable/button_border">
+
+                <ImageView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:background="#FFFFFF"
+                    app:srcCompat="@drawable/monthly_record"
+                    tools:srcCompat="@drawable/monthly_record" />
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_gravity="bottom|center"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="View All Transactions"
+                    android:textColor="#000000"
+                    android:textColorHint="#FFFFFF"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:text="View All Transactions" />
+
+            </FrameLayout>
 
         </LinearLayout>
     </LinearLayout>

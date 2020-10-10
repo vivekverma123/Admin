@@ -20,6 +20,7 @@ import com.example.model.FlatOwner;
 import com.example.model.Maintenance;
 import com.example.model.Month;
 import com.example.model.Request;
+import com.example.model.Transaction;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -96,7 +97,7 @@ public class ApproveRequest extends AppCompatActivity {
     public void refresh()
     {
         DatabaseReference d1 = FirebaseDatabase.getInstance().getReference();
-        d1.addListenerForSingleValueEvent(new ValueEventListener() {
+        d1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -169,6 +170,10 @@ public class ApproveRequest extends AppCompatActivity {
                             d1.child("MaintenanceRecord").child(id).child(request.getFlatNo()).setValue(m1);
                             d1.child("Months").child(id).setValue(m2);
 
+                            String t_id = d1.child("Transactions").push().getKey();
+                            Transaction transaction = new Transaction(r1.getAmt(),0,r1.getDate(),t_id,r1.getFlatNo());
+                            d1.child("Transactions").child(t_id).setValue(transaction);
+
                         }
                         catch(Exception e1)
                         {
@@ -202,6 +207,12 @@ public class ApproveRequest extends AppCompatActivity {
 
         AlertDialog dialog = alert.create();
         dialog.show();
+    }
+
+    public void onResume() {
+
+        super.onResume();
+        refresh();
     }
 
 }

@@ -44,7 +44,7 @@
             android:gravity="center"
             android:text="Flat No"
             android:textColor="#000000"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:layout_width="80dp"
@@ -57,7 +57,7 @@
             android:gravity="center"
             android:text="Amount"
             android:textColor="#000000"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/Remark"
@@ -71,14 +71,14 @@
             android:gravity="center"
             android:text="Remark (Flat Owner)"
             android:textColor="#000000"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
 
     </RelativeLayout>
 
     <ListView
         android:id="@+id/list_req2"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="500dp"
         android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

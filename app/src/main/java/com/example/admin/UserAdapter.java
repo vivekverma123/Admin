@@ -41,6 +41,10 @@ public class UserAdapter extends ArrayAdapter<FlatOwner>
         if(position%2==0) {
             convertView.setBackgroundColor(Color.parseColor("#C0D6E4"));
         }
+        else
+        {
+            convertView.setBackgroundColor(Color.WHITE);
+        }
 
         // Return the completed view to render on screen
         return convertView;

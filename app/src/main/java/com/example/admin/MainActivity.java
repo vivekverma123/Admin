@@ -158,6 +158,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this,ApproveDueRequest.class));
             }
         });
+
+        FrameLayout btn4 = findViewById(R.id.frame4);
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,ViewTransactionsActivity.class));
+            }
+        });
     }
 
     public void showDialogBox1(View view)

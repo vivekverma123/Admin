@@ -4,77 +4,87 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ViewAllActivity">
+    tools:context=".ViewTransactionsActivity">
 
-    <RelativeLayout
-        android:id="@+id/linearLayout"
+    <TextView
+        android:id="@+id/textView4"
         android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_margin="20dp"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.001" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.842"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.07">
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="65dp"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_marginStart="1dp"
             android:layout_marginLeft="1dp"
-            android:layout_weight="1"
             android:gravity="center"
-            android:text="Flat No"
+            android:text="Date"
             android:textColor="#000000"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="150dp"
+            android:layout_width="187dp"
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
-            android:layout_marginStart="66dp"
-            android:layout_marginLeft="66dp"
-            android:layout_weight="1"
+            android:layout_marginStart="81dp"
+            android:layout_marginLeft="81dp"
             android:gravity="center"
-            android:text="Flat Owner"
+            android:text="Particular"
             android:textColor="#000000"
             android:textSize="14sp" />
 
         <TextView
             android:id="@+id/textView5"
-            android:layout_width="176dp"
+            android:layout_width="123dp"
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginStart="217dp"
-            android:layout_marginLeft="217dp"
-            android:layout_marginEnd="-2dp"
-            android:layout_marginRight="-2dp"
-            android:layout_weight="1"
+            android:layout_marginStart="268dp"
+            android:layout_marginLeft="268dp"
             android:gravity="center"
-            android:text="Phone Number"
+            android:text="Amount (₹)"
             android:textColor="#000000"
             android:textSize="14sp" />
     </RelativeLayout>
 
     <ListView
-        android:id="@+id/listall"
+        android:id="@+id/listview3"
         android:layout_width="0dp"
         android:layout_height="500dp"
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
+        android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.026" />
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintVertical_bias="0.05" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

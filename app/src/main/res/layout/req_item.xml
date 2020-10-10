@@ -33,7 +33,7 @@
         android:text="textview"
         android:textColor="#000000"
         android:textColorHighlight="#FFFFFF"
-        android:textSize="18dp" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/amt_2"
@@ -51,7 +51,7 @@
         android:gravity="center"
         android:text="textview"
         android:textColor="#000000"
-        android:textSize="18dp" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/rem_client"
@@ -67,7 +67,7 @@
         android:gravity="center"
         android:text="textview"
         android:textColor="#000000"
-        android:textSize="18dp"
+        android:textSize="14sp"
         tools:layout_editor_absoluteX="63dp"
         tools:layout_editor_absoluteY="103dp" />
 </RelativeLayout>
