@@ -4,95 +4,375 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/addFlatOwner"
-        android:layout_width="149dp"
-        android:layout_height="44dp"
-        android:text="Add Flat Owner"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="375dp"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintVertical_bias="1.0">
 
-    <Button
-        android:id="@+id/removeFlatOwner"
-        android:layout_width="181dp"
-        android:layout_height="44dp"
-        android:text="Remove Flat Owner"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addFlatOwner"
-        app:layout_constraintVertical_bias="0.0" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/viewall"
-        android:layout_width="197dp"
-        android:layout_height="44dp"
-        android:text="View All Flat Owners"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/removeFlatOwner"
-        app:layout_constraintVertical_bias="0.0" />
+            <FrameLayout
+                android:id="@+id/frame1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/button_border">
 
-    <Button
-        android:id="@+id/initialbal"
-        android:layout_width="wrap_content"
-        android:layout_height="44dp"
-        android:text="initialise balance"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewall"
-        app:layout_constraintVertical_bias="0.0" />
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:background="#FFFFFF"
+                    app:srcCompat="@drawable/add_user"
+                    tools:srcCompat="@drawable/add_user" />
 
-    <Button
-        android:id="@+id/app_main_req"
-        android:layout_width="wrap_content"
-        android:layout_height="44dp"
-        android:text="approve maintenance requests"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/initialbal"
-        app:layout_constraintVertical_bias="0.0" />
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_gravity="bottom|center"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Add Flat Owner"
+                    android:textColor="#000000"
+                    android:textColorHint="#FFFFFF"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/view_months"
-        android:layout_width="wrap_content"
-        android:layout_height="44dp"
-        android:text="view/edit monthly record"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/app_main_req"
-        app:layout_constraintVertical_bias="0.0" />
+            </FrameLayout>
 
-    <Button
-        android:id="@+id/app_advanc_req"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:text="approve advance pay request"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_months"
-        app:layout_constraintVertical_bias="0.132" />
+            <FrameLayout
+                android:id="@+id/frame2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/button_border">
 
-    <Button
-        android:id="@+id/appr_due_req"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:text="Approve due request"
-        app:layout_constraintBottom_toBottomOf="parent"
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:background="#FFFFFF"
+                    app:srcCompat="@drawable/remover_user"
+                    tools:srcCompat="@drawable/remover_user" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_gravity="bottom|center"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Remove Flat Owner"
+                    android:textColor="#000000"
+                    android:textColorHint="#FFFFFF"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/frame3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/button_border">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:background="#FFFFFF"
+                    app:srcCompat="@drawable/view_users"
+                    tools:srcCompat="@drawable/view_users" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_gravity="bottom|center"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="View All Flat Owners"
+                    android:textColor="#000000"
+                    android:textColorHint="#FFFFFF"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:id="@+id/frame6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/button_border">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:background="#FFFFFF"
+                    app:srcCompat="@drawable/maintenance_payment"
+                    tools:srcCompat="@drawable/maintenance_payment" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_gravity="bottom|center"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Maintenance Payment Requests"
+                    android:textColor="#000000"
+                    android:textColorHint="#FFFFFF"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/frame8"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/button_border">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:background="#FFFFFF"
+                    app:srcCompat="@drawable/advance_payment"
+                    tools:srcCompat="@drawable/advance_payment" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_gravity="bottom|center"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Advance Payment Requests"
+                    android:textColor="#000000"
+                    android:textColorHint="#FFFFFF"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/frame9"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/button_border">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:background="#FFFFFF"
+                    app:srcCompat="@drawable/due_payment"
+                    tools:srcCompat="@drawable/due_payment" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_gravity="bottom|center"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Due Payment Requests"
+                    android:textColor="#000000"
+                    android:textColorHint="#FFFFFF"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:id="@+id/frame7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/button_border">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:background="#FFFFFF"
+                    app:srcCompat="@drawable/monthly_record"
+                    tools:srcCompat="@drawable/monthly_record" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_gravity="bottom|center"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="View/Edit Monthly Record"
+                    android:textColor="#000000"
+                    android:textColorHint="#FFFFFF"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/frame5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/button_border">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:background="#FFFFFF"
+                    app:srcCompat="@drawable/balance"
+                    tools:srcCompat="@drawable/balance" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_gravity="bottom|center"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Set Initial Balance"
+                    android:textColor="#000000"
+                    android:textColorHint="#FFFFFF"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </FrameLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#FFFFFF" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:background="#5C1535"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/app_advanc_req"
-        app:layout_constraintVertical_bias="0.185" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.307">
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Loading..."
+            android:textColor="#FFFFFF"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Loading..." />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="Loading..."
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="right|center_vertical"
+                android:padding="10dp"
+                android:text="Loading..."
+                android:textColor="#FFFFFF"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="left|fill_vertical"
+                android:padding="10dp"
+                android:text="Loading..."
+                android:textColor="#FFFF00"
+                android:textSize="14dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="right|center_vertical"
+                android:padding="10dp"
+                android:text="Loading..."
+                android:textColor="#FFFFFF"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="left|fill_vertical"
+                android:padding="10dp"
+                android:text="Loading..."
+                android:textColor="#FFFF00"
+                android:textSize="14dp" />
+        </LinearLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

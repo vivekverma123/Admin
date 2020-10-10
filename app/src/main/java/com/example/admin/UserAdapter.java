@@ -1,6 +1,7 @@
 package com.example.admin;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,10 @@ public class UserAdapter extends ArrayAdapter<FlatOwner>
         flat.setText(flatOwner.getFlatNo());
         name.setText(flatOwner.getName());
         mobNo.setText(flatOwner.getMobNo());
+
+        if(position%2==0) {
+            convertView.setBackgroundColor(Color.parseColor("#C0D6E4"));
+        }
 
         // Return the completed view to render on screen
         return convertView;

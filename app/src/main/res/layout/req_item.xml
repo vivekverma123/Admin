@@ -1,57 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="50dp"><![CDATA[
 
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="0dp"
-        android:layout_height="44dp"
-        android:layout_margin="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.842"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023">
+    android:id="@+id/linearLayout3"
+    android:layout_width="0dp"
+    android:layout_height="44dp"
+    android:layout_margin="10dp"
+    android:orientation="horizontal"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.842"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.023">
 
-        <TextView
-            android:id="@+id/flat"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center" />
 
-        <TextView
-            android:id="@+id/amt_2"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center" />
-
-        <TextView
-            android:id="@+id/rem_client"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:gravity="center" />
-
-    </LinearLayout>
+    ]]>
 
     <TextView
-        android:id="@+id/req_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.974"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-        app:layout_constraintVertical_bias="0.0" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:id="@+id/flat"
+        android:layout_width="65dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="-1dp"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="textview"
+        android:textColor="#000000"
+        android:textColorHighlight="#FFFFFF"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/amt_2"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="65dp"
+        android:layout_marginLeft="65dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="textview"
+        android:textColor="#000000"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/rem_client"
+        android:layout_width="266dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="144dp"
+        android:layout_marginLeft="144dp"
+        android:layout_marginTop="0dp"
+        android:layout_weight="4"
+        android:gravity="center"
+        android:text="textview"
+        android:textColor="#000000"
+        android:textSize="18dp"
+        tools:layout_editor_absoluteX="63dp"
+        tools:layout_editor_absoluteY="103dp" />
+</RelativeLayout>

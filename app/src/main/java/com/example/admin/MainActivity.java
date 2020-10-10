@@ -1,7 +1,6 @@
 package com.example.admin;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.appcompat.app.AlertDialog;
@@ -10,26 +9,27 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.model.DueRecord;
 import com.example.model.FlatOwner;
+import com.example.model.Helper;
 import com.example.model.Maintenance;
 import com.example.model.Month;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class MainActivity extends AppCompatActivity {
@@ -43,19 +43,35 @@ public class MainActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState)
     {
-        super.onCreate(savedInstanceState);
-
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        setContentView(R.layout.activity_main);
-
-
-
-        init();
         try {
-            generateMonth();
+            super.onCreate(savedInstanceState);
+
+            this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+            this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+            setContentView(R.layout.activity_main);
+
+            init();
+
+            //refresh();
+
+            TextView t1 = findViewById(R.id.textView9);
+            TextView t2 = findViewById(R.id.textView10);
+
+            t1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showDialogBox5(v);
+                }
+            });
+
+            t2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showDialogBox6(v);
+                }
+            });
         }
         catch(Exception e1)
         {
@@ -63,20 +79,25 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+
     }
 
     public void init()
     {
         context = MainActivity.this;
-        Button btn1 = findViewById(R.id.addFlatOwner);
+        //Button btn1 = findViewById(R.id.addFlatOwner);
+        FrameLayout btn1 = findViewById(R.id.frame1);
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDialogBox1(view);
+
+                    showDialogBox1(view);
+
             }
         });
 
-        Button btn2 = findViewById(R.id.removeFlatOwner);
+        //Button btn2 = findViewById(R.id.removeFlatOwner);
+        FrameLayout btn2 = findViewById(R.id.frame2);
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,7 +105,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button btn3 = findViewById(R.id.viewall);
+        //Button btn3 = findViewById(R.id.viewall);
+        FrameLayout btn3 = findViewById(R.id.frame3);
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,7 +114,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button btn5 = findViewById(R.id.initialbal);
+        //Button btn5 = findViewById(R.id.initialbal);
+        FrameLayout btn5 = findViewById(R.id.frame5);
         btn5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,7 +123,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button btn6 = findViewById(R.id.app_main_req);
+        //Button btn6 = findViewById(R.id.app_main_req);
+        FrameLayout btn6 = findViewById(R.id.frame6);
         btn6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,7 +132,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button btn7 = findViewById(R.id.view_months);
+        //Button btn7 = findViewById(R.id.view_months);
+        FrameLayout btn7 = findViewById(R.id.frame7);
         btn7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,7 +141,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button btn8 = findViewById(R.id.app_advanc_req);
+        //Button btn8 = findViewById(R.id.app_advanc_req);
+        FrameLayout btn8 = findViewById(R.id.frame8);
         btn8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,7 +150,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button btn9 = findViewById(R.id.appr_due_req);
+        //Button btn9 = findViewById(R.id.appr_due_req);
+        FrameLayout btn9 = findViewById(R.id.frame9);
         btn9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,9 +177,10 @@ public class MainActivity extends AppCompatActivity {
                 alert.setPositiveButton("Add Flat Owner", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        try{
                         EditText e1 = alert_layout.findViewById(R.id.flatno1);
                         EditText e2 = alert_layout.findViewById(R.id.name);
-                        EditText e3 = alert_layout.findViewById(R.id.due_amt);
+                        EditText e3 = alert_layout.findViewById(R.id.mobno);
 
                         EditText e4 = alert_layout.findViewById(R.id.due10);
                         EditText e5 = alert_layout.findViewById(R.id.advance10);
@@ -172,19 +200,28 @@ public class MainActivity extends AppCompatActivity {
                         }
                         else {
                             FlatOwner flatOwner = new FlatOwner(flatNo, Name, mobNo);
-                            myRef.child("FlatOwners").child(e1.getText().toString()).setValue(flatOwner);
+                            myRef.child("FlatOwners").child(flatNo).setValue(flatOwner);
                             myRef.child("TotalDue").child(flatNo).setValue(Integer.parseInt(due));
                             myRef.child("AdvancedAmount").child(flatNo).setValue(Integer.parseInt(advance));
 
                             String s1 = dataSnapshot1.child("CurrentMonth").getValue(String.class);
+
                             Month m1 = dataSnapshot1.child("Months").child(s1).getValue(Month.class);
                             int amt2 = m1.getContr();
+
                             Maintenance m2 = new Maintenance(flatNo,0,0,m1.getTitle(),amt2);
+
                             myRef.child("MaintenanceRecord").child(s1).child(flatNo).setValue(m2);
 
-
+                            refresh();
 
                         }
+
+                    }
+                catch(Exception e1)
+                    {
+                        Toast.makeText(MainActivity.this,e1.toString(),Toast.LENGTH_SHORT).show();
+                    }
 
                     }
                 });
@@ -247,81 +284,6 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    public void showDialogBox3(View view)
-    {
-        final View alert_layout = getLayoutInflater().inflate(R.layout.due_dialog,null);
-
-        final AlertDialog.Builder alert = new AlertDialog.Builder(context);
-        alert.setTitle("Initialise Due");
-        alert.setView(alert_layout);
-
-        alert.setPositiveButton("Add Record", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                EditText e1 = alert_layout.findViewById(R.id.flatno1);
-                EditText e2 = alert_layout.findViewById(R.id.due_amt);
-
-                final String flatNo = e1.getText().toString();
-                int amt1 = 0;
-                amt1 = Integer.parseInt(e2.getText().toString());
-                final int amt = amt1;
-                if(flatNo.length()==0)
-                {
-                    Toast.makeText(MainActivity.this,"Flat Number can't be empty",Toast.LENGTH_SHORT).show();
-                }
-                else {
-
-                    DatabaseReference d1 = FirebaseDatabase.getInstance().getReference();
-                    d1.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if(dataSnapshot.child("FlatOwners").child(flatNo).exists())
-                            {
-                                int amt1 = 0, amt2 = 0;
-                                if(dataSnapshot.child("TotalDue").child(flatNo).exists())
-                                {
-                                    amt1 = dataSnapshot.child("TotalDue").child(flatNo).getValue(Integer.class);
-                                }
-                                if(dataSnapshot.child("InitialDue").child(flatNo).exists())
-                                {
-                                    amt2 = dataSnapshot.child("InitialDue").child(flatNo).getValue(Integer.class);
-                                }
-
-                                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                DatabaseReference myRef = database.getReference();
-                                myRef.child("TotalDue").child(flatNo).setValue(amt1 - amt2 + amt);
-                                myRef.child("InitialDue").child(flatNo).setValue(amt);
-                            }
-                            else
-                            {
-                                Toast.makeText(MainActivity.this,"Flat Number is not registered",Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
-
-
-
-                }
-            }
-        });
-
-        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-                dialogInterface.dismiss();
-            }
-        });
-
-        AlertDialog dialog = alert.create();
-        dialog.show();
-    }
-
     void showDialogBox4(View view)
     {
         final View alert_layout = getLayoutInflater().inflate(R.layout.bal_dialog,null);
@@ -339,9 +301,78 @@ public class MainActivity extends AppCompatActivity {
 
                 DatabaseReference d1 = FirebaseDatabase.getInstance().getReference();
                 d1.child("InitialBalance").setValue(x);
+                refresh();
 
                 }
             }
+        );
+
+        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                dialogInterface.dismiss();
+            }
+        });
+
+        AlertDialog dialog = alert.create();
+        dialog.show();
+    }
+
+    void showDialogBox5(View view)
+    {
+        final View alert_layout = getLayoutInflater().inflate(R.layout.bal_dialog,null);
+
+        final AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        alert.setTitle("Enter Name");
+        alert.setView(alert_layout);
+        EditText e1 = alert_layout.findViewById(R.id.balamt);
+        e1.setHint("society name");
+
+        alert.setPositiveButton("Set/Change", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        EditText e1 = alert_layout.findViewById(R.id.balamt);
+
+                        DatabaseReference d1 = FirebaseDatabase.getInstance().getReference();
+                        d1.child("Name").setValue(e1.getText().toString());
+
+                    }
+                }
+        );
+
+        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                dialogInterface.dismiss();
+            }
+        });
+
+        AlertDialog dialog = alert.create();
+        dialog.show();
+    }
+
+    void showDialogBox6(View view)
+    {
+        final View alert_layout = getLayoutInflater().inflate(R.layout.bal_dialog,null);
+
+        final AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        alert.setTitle("Enter Address");
+        alert.setView(alert_layout);
+        EditText e1 = alert_layout.findViewById(R.id.balamt);
+        e1.setHint("society address");
+
+        alert.setPositiveButton("Set/Change", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        EditText e1 = alert_layout.findViewById(R.id.balamt);
+
+                        DatabaseReference d1 = FirebaseDatabase.getInstance().getReference();
+                        d1.child("Address").setValue(e1.getText().toString());
+
+                    }
+                }
         );
 
         alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -421,42 +452,38 @@ public class MainActivity extends AppCompatActivity {
                                         d1.child("Months").child(id).setValue(m1);
                                         d1.child("CurrentMonth").setValue(id);
 
-                                        for (DataSnapshot d2 : dataSnapshot.child("FlatOwners").getChildren())
-                                        {
-                                            Toast.makeText(MainActivity.this, "Here", Toast.LENGTH_SHORT).show();
-                                            FlatOwner f1 = d2.getValue(FlatOwner.class);
+                                        if(dataSnapshot.child("FlatOwners").exists()) {
 
-                                            if(id_prev.equals("-1")==false)
-                                            {
-                                                Maintenance m1 = dataSnapshot.child("MaintenanceRecord").child(id_prev).child(f1.getFlatNo()).getValue(Maintenance.class);
-                                                int amt1 = dataSnapshot.child("TotalDue").child(f1.getFlatNo()).getValue(Integer.class);
-                                                amt1 += (m1.getContr() - m1.getAmt_paid());
-                                                d1.child("TotalDue").child(f1.getFlatNo()).setValue(amt1);
-                                            }
+                                            for (DataSnapshot d2 : dataSnapshot.child("FlatOwners").getChildren()) {
+                                                Toast.makeText(MainActivity.this, "Here", Toast.LENGTH_SHORT).show();
+                                                FlatOwner f1 = d2.getValue(FlatOwner.class);
 
-                                            Maintenance m2 = new Maintenance(f1.getFlatNo(), 0, 0, m1.getTitle(), m1.getContr());
-                                            int amt1 = dataSnapshot.child("AdvancedAmount").child(f1.getFlatNo()).getValue(Integer.class);
-
-                                            if(amt1>0)
-                                            {
-                                                if (amt1 >= m1.getContr())
-                                                {
-                                                    amt1 -= m1.getContr();
-                                                    m2.setAmt_paid(m1.getContr());
-                                                    m2.setStatus(2);
+                                                if (id_prev.equals("-1") == false) {
+                                                    Maintenance m1 = dataSnapshot.child("MaintenanceRecord").child(id_prev).child(f1.getFlatNo()).getValue(Maintenance.class);
+                                                    int amt1 = dataSnapshot.child("TotalDue").child(f1.getFlatNo()).getValue(Integer.class);
+                                                    amt1 += (m1.getContr() - m1.getAmt_paid());
+                                                    d1.child("TotalDue").child(f1.getFlatNo()).setValue(amt1);
                                                 }
-                                                else
-                                                {
-                                                    m2.setAmt_paid(amt1);
-                                                    amt1 = 0;
-                                                    m2.setStatus(1);
-                                                }
-                                            }
 
-                                            d1.child("AdvancedAmount").child(f1.getFlatNo()).setValue(amt1);
-                                            d1.child("MaintenanceRecord").child(id).child(f1.getFlatNo()).setValue(m2);
+                                                Maintenance m2 = new Maintenance(f1.getFlatNo(), 0, 0, m1.getTitle(), m1.getContr());
+                                                int amt1 = dataSnapshot.child("AdvancedAmount").child(f1.getFlatNo()).getValue(Integer.class);
+
+                                                if (amt1 > 0) {
+                                                    if (amt1 >= m1.getContr()) {
+                                                        amt1 -= m1.getContr();
+                                                        m2.setAmt_paid(m1.getContr());
+                                                        m2.setStatus(2);
+                                                    } else {
+                                                        m2.setAmt_paid(amt1);
+                                                        amt1 = 0;
+                                                        m2.setStatus(1);
+                                                    }
+                                                }
+
+                                                d1.child("AdvancedAmount").child(f1.getFlatNo()).setValue(amt1);
+                                                d1.child("MaintenanceRecord").child(id).child(f1.getFlatNo()).setValue(m2);
+                                            }
                                         }
-
                                     }
                                 }
                         );
@@ -472,11 +499,11 @@ public class MainActivity extends AppCompatActivity {
 
                         AlertDialog dialog = alert.create();
                         dialog.show();
-
-
-
                     }
 
+                }
+                if(dataSnapshot.child("CurrentMonth").exists()) {
+                    refresh();
                 }
 
             }
@@ -487,5 +514,82 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    public void refresh()
+    {
+        DatabaseReference d1 = FirebaseDatabase.getInstance().getReference();
+        d1.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot != null) {
+                    TextView t1 = findViewById(R.id.textView9);
+                    TextView t2 = findViewById(R.id.textView10);
+                    TextView t3 = findViewById((R.id.textView11));
+                    TextView t4 = findViewById((R.id.textView12));
+                    TextView t5 = findViewById((R.id.textView13));
+                    TextView t6 = findViewById((R.id.textView14));
+
+                    String date = Helper.getLastDate();
+
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMMM dd, YYYY");
+                    Date date1 = new Date();
+                    String curr_date = simpleDateFormat.format(date1);
+
+                    if (dataSnapshot.child("Name").exists() == false) {
+                        t1.setText("Name not set");
+                    } else {
+                        t1.setText(dataSnapshot.child("Name").getValue(String.class));
+                    }
+
+                    if (dataSnapshot.child("Address").exists() == false) {
+                        t2.setText("Address not set");
+                    } else {
+                        t2.setText(dataSnapshot.child("Address").getValue(String.class));
+                    }
+
+                    int amt1 = 0;
+                    int amt2 = 0;
+
+                    if(dataSnapshot.child("InitialBalance").exists()==true) {
+                        amt2 = dataSnapshot.child("InitialBalance").getValue(Integer.class);
+                    }
+
+                    for (DataSnapshot d1 : dataSnapshot.child("Months").getChildren()) {
+
+                        Month m1 = d1.getValue(Month.class);
+                        amt2 += (m1.getAmtOb() - m1.getTotExp());
+                    }
+
+                    String id = dataSnapshot.child("CurrentMonth").getValue(String.class);
+                    Month m1 = dataSnapshot.child("Months").child(id).getValue(Month.class);
+
+                    for (DataSnapshot d1 : dataSnapshot.child("FlatOwners").getChildren()) {
+                        FlatOwner f1 = d1.getValue(FlatOwner.class);
+                        amt1 += dataSnapshot.child("TotalDue").child(f1.getFlatNo()).getValue(Integer.class);
+                        Maintenance m2 = dataSnapshot.child("MaintenanceRecord").child(id).child(f1.getFlatNo()).getValue(Maintenance.class);
+                        amt1 += m1.getContr() - m2.getAmt_paid();
+                    }
+
+                    t3.setText("Balance as on " + curr_date + ": ");
+                    t5.setText("Amount accrued till " + curr_date + ": ");
+
+                    t4.setText("₹" + amt2);
+                    t6.setText("₹" + amt1);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        generateMonth();
     }
 }

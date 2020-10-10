@@ -2,6 +2,7 @@ package com.example.admin;
 import com.example.admin.R;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,6 +49,10 @@ public class UserAdapter3 extends ArrayAdapter<Month>
 
         TextView t1 = convertView.findViewById(R.id.month_title);
         t1.setText(month.getTitle());
+
+        if(position%2==0) {
+            convertView.setBackgroundColor(Color.parseColor("#C0D6E4"));
+        }
 
         return convertView;
     }

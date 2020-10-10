@@ -6,10 +6,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="Due payment requests"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.01" />
+
+    <RelativeLayout
         android:id="@+id/linearLayout3"
         android:layout_width="0dp"
-        android:layout_height="44dp"
+        android:layout_height="50dp"
         android:layout_margin="10dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -17,30 +31,48 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.021">
+        app:layout_constraintVertical_bias="0.07">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="65dp"
             android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="-1dp"
+            android:layout_marginLeft="-1dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Flat No" />
+            android:text="Flat No"
+            android:textColor="#000000"
+            android:textSize="18sp" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="64dp"
+            android:layout_marginLeft="64dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Amount" />
+            android:text="Amount"
+            android:textColor="#000000"
+            android:textSize="18sp" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="246dp"
             android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="143dp"
+            android:layout_marginLeft="143dp"
             android:layout_weight="4"
             android:gravity="center"
-            android:text="Remark (Flat Owner)" />
+            android:text="Remark (Flat Owner)"
+            android:textColor="#000000"
+            android:textSize="18sp" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <ListView
         android:id="@+id/list_req3"
@@ -49,8 +81,8 @@
         android:layout_margin="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-        app:layout_constraintVertical_bias="0.027" />
+        app:layout_constraintVertical_bias="0.05" />
 </androidx.constraintlayout.widget.ConstraintLayout>

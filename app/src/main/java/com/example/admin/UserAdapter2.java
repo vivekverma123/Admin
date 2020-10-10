@@ -1,6 +1,7 @@
 package com.example.admin;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,12 +48,14 @@ public class UserAdapter2 extends ArrayAdapter<Request>
         TextView flat = convertView.findViewById(R.id.flat);
         TextView amt = convertView.findViewById(R.id.amt_2);
         TextView e2 = convertView.findViewById(R.id.rem_client);
-        TextView e3 = convertView.findViewById(R.id.req_id);
 
         flat.setText(request.getFlatNo());
-        amt.setText("" + request.getAmt());
+        amt.setText("₹" + request.getAmt());
         e2.setText(request.getRemarkClient());
-        e3.setText(request.getId());
+
+        if(position%2==0) {
+            convertView.setBackgroundColor(Color.parseColor("#C0D6E4"));
+        }
 
 
 

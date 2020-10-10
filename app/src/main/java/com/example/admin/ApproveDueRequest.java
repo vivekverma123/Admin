@@ -59,7 +59,7 @@ public class ApproveDueRequest extends AppCompatActivity {
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference ownerRef = myRef.child("DueRequests");
 
-        ownerRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        ownerRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 

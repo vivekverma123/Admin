@@ -61,7 +61,7 @@ public class ApproveAdvanceRequest extends AppCompatActivity {
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference ownerRef = myRef.child("AdvancePayRequests");
 
-        ownerRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        ownerRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
