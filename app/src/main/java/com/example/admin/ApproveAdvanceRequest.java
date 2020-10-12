@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+
 import android.provider.CalendarContract;
 import android.view.View;
 import android.view.Window;
@@ -54,7 +56,11 @@ public class ApproveAdvanceRequest extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Request request = (Request)parent.getItemAtPosition(position);
-                showDialogBox1(request);
+
+                Intent i1 = new Intent(ApproveAdvanceRequest.this,ApproveRequestActivity.class);
+                i1.putExtra("Request", request);
+                i1.putExtra("Type","1");
+                startActivity(i1);
             }
         });
 

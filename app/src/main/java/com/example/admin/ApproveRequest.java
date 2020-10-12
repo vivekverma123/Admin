@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
@@ -58,7 +59,10 @@ public class ApproveRequest extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                     Request request = (Request) parent.getItemAtPosition(position);
-                    showDialogBox1(request);
+                    Intent i1 = new Intent(ApproveRequest.this,ApproveRequestActivity.class);
+                    i1.putExtra("Request", request);
+                    i1.putExtra("Type","0");
+                    startActivity(i1);
                 }
             });
 

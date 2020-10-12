@@ -1,9 +1,11 @@
 package com.example.model;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
-public class Request {
+public class Request implements Serializable {
     private String flatNo;
     private int amt;
     private String remarkClient;
@@ -12,6 +14,7 @@ public class Request {
     private String id;
     private String id_month;
     private String date;
+    private String invoice_id;
 
     public String getId() {
         return id;
@@ -32,6 +35,26 @@ public class Request {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/YYYY");
         Date date1 = new Date();
         date = simpleDateFormat.format(date1);
+        invoice_id = UUID.randomUUID().toString();
+    }
+
+    public Request() {
+    }
+
+    public String getFlatNo() {
+        return flatNo;
+    }
+
+    public void setFlatNo(String flatNo) {
+        this.flatNo = flatNo;
+    }
+
+    public int getAmt() {
+        return amt;
+    }
+
+    public void setAmt(int amt) {
+        this.amt = amt;
     }
 
     public String getRemarkClient() {
@@ -58,27 +81,6 @@ public class Request {
         this.status = status;
     }
 
-
-
-    public Request() {
-    }
-
-    public String getFlatNo() {
-        return flatNo;
-    }
-
-    public void setFlatNo(String flatNo) {
-        this.flatNo = flatNo;
-    }
-
-    public int getAmt() {
-        return amt;
-    }
-
-    public void setAmt(int amt) {
-        this.amt = amt;
-    }
-
     public String getId_month() {
         return id_month;
     }
@@ -93,5 +95,13 @@ public class Request {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getInvoice_id() {
+        return invoice_id;
+    }
+
+    public void setInvoice_id(String invoice_id) {
+        this.invoice_id = invoice_id;
     }
 }
