@@ -13,7 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewInvoice"></activity>
+        <activity android:name=".RequestDetails"></activity>
+        <activity android:name=".ViewMoney" />
+        <activity android:name=".MaintenanceStatus" />
+        <activity android:name=".ViewAllRequests" />
+        <activity android:name=".ViewInvoice" />
         <activity android:name=".ApproveRequestActivity" />
         <activity android:name=".ViewTransactionsActivity" />
         <activity android:name=".ApproveDueRequest" />

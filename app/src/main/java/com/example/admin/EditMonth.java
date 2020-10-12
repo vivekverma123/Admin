@@ -34,15 +34,6 @@ public class EditMonth extends AppCompatActivity {
 
         refresh();
 
-
-
-        if(snapshot==null)
-        {
-            Toast.makeText(EditMonth.this,"It's NULL",Toast.LENGTH_SHORT).show();
-        }
-
-
-
         Intent i1 = getIntent();
         m1 = (Month)i1.getSerializableExtra("Month");
         init();

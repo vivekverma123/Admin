@@ -51,6 +51,7 @@ public class ApproveAdvanceRequest extends AppCompatActivity {
         context = ApproveAdvanceRequest.this;
 
         l1 = findViewById(R.id.list_req);
+
         l1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

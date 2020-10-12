@@ -158,6 +158,7 @@ public class ApproveRequestActivity extends AppCompatActivity {
                         String t_id = d1.child("Transactions").push().getKey();
                         Transaction transaction = new Transaction(r1.getAmt(), 0, r1.getDate(), t_id, r1.getFlatNo());
                         d1.child("Transactions").child(t_id).setValue(transaction);
+                        Toast.makeText(ApproveRequestActivity.this,"Approved",Toast.LENGTH_LONG).show();
                     }
                     else
                     {
@@ -195,6 +196,7 @@ public class ApproveRequestActivity extends AppCompatActivity {
                     String t_id = d1.child("Transactions").push().getKey();
                     Transaction transaction = new Transaction(r1.getAmt(),1,r1.getDate(),t_id,r1.getFlatNo());
                     d1.child("Transactions").child(t_id).setValue(transaction);
+                    Toast.makeText(ApproveRequestActivity.this,"Approved",Toast.LENGTH_LONG).show();
                 }
                 else
                 {
@@ -233,9 +235,11 @@ public class ApproveRequestActivity extends AppCompatActivity {
                         String t_id = d1.child("Transactions").push().getKey();
                         Transaction transaction = new Transaction(r1.getAmt(), 2, r1.getDate(), t_id, r1.getFlatNo());
                         d1.child("Transactions").child(t_id).setValue(transaction);
+                        Toast.makeText(ApproveRequestActivity.this,"Approved",Toast.LENGTH_LONG).show();
                     }
                 }
                 refresh();
+                back();
             }
         });
 
@@ -253,6 +257,8 @@ public class ApproveRequestActivity extends AppCompatActivity {
 
                 DatabaseReference d1 = FirebaseDatabase.getInstance().getReference();
                 d1.child(child_id).child(request.getId()).setValue(request);
+
+                back();
             }
         });
 
@@ -278,5 +284,10 @@ public class ApproveRequestActivity extends AppCompatActivity {
     public void setSnapshot(DataSnapshot snapshot)
     {
         this.snapshot = snapshot;
+    }
+
+    public void back()
+    {
+        super.onBackPressed();
     }
 }

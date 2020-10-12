@@ -166,6 +166,30 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this,ViewTransactionsActivity.class));
             }
         });
+
+        FrameLayout btn10 = findViewById(R.id.frame10);
+        btn10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,ViewAllRequests.class));
+            }
+        });
+
+        FrameLayout btn11 = findViewById(R.id.frame11);
+        btn11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,MaintenanceStatus.class));
+            }
+        });
+
+        FrameLayout btn12 = findViewById(R.id.frame12);
+        btn12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,ViewMoney.class));
+            }
+        });
     }
 
     public void showDialogBox1(View view)

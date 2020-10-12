@@ -36,7 +36,7 @@
                 <ImageView
                     android:id="@+id/imageView"
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
+                    android:layout_height="60dp"
                     android:background="#FFFFFF"
                     app:srcCompat="@drawable/add_user"
                     tools:srcCompat="@drawable/add_user" />
@@ -44,7 +44,7 @@
                 <TextView
                     android:id="@+id/textView8"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="65dp"
                     android:layout_gravity="bottom|center"
                     android:background="#FFFFFF"
                     android:gravity="center"
@@ -52,6 +52,7 @@
                     android:text="Add Flat Owner"
                     android:textColor="#000000"
                     android:textColorHint="#FFFFFF"
+                    android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -66,14 +67,14 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
+                    android:layout_height="60dp"
                     android:background="#FFFFFF"
                     app:srcCompat="@drawable/remover_user"
                     tools:srcCompat="@drawable/remover_user" />
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="65dp"
                     android:layout_gravity="bottom|center"
                     android:background="#FFFFFF"
                     android:gravity="center"
@@ -81,6 +82,7 @@
                     android:text="Remove Flat Owner"
                     android:textColor="#000000"
                     android:textColorHint="#FFFFFF"
+                    android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
             </FrameLayout>
@@ -94,14 +96,14 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
+                    android:layout_height="60dp"
                     android:background="#FFFFFF"
                     app:srcCompat="@drawable/view_users"
                     tools:srcCompat="@drawable/view_users" />
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="65dp"
                     android:layout_gravity="bottom|center"
                     android:background="#FFFFFF"
                     android:gravity="center"
@@ -109,6 +111,36 @@
                     android:text="View All Flat Owners"
                     android:textColor="#000000"
                     android:textColorHint="#FFFFFF"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/frame6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/button_border">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="#FFFFFF"
+                    app:srcCompat="@drawable/maintenance_payment"
+                    tools:srcCompat="@drawable/maintenance_payment" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:layout_gravity="bottom|center"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Maintenance Payment"
+                    android:textColor="#000000"
+                    android:textColorHint="#FFFFFF"
+                    android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
             </FrameLayout>
@@ -120,33 +152,7 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <FrameLayout
-                android:id="@+id/frame6"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/button_border">
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:background="#FFFFFF"
-                    app:srcCompat="@drawable/maintenance_payment"
-                    tools:srcCompat="@drawable/maintenance_payment" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_gravity="bottom|center"
-                    android:background="#FFFFFF"
-                    android:gravity="center"
-                    android:padding="5dp"
-                    android:text="Maintenance Payment Requests"
-                    android:textColor="#000000"
-                    android:textColorHint="#FFFFFF"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-            </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/frame8"
@@ -157,21 +163,22 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
+                    android:layout_height="60dp"
                     android:background="#FFFFFF"
                     app:srcCompat="@drawable/advance_payment"
                     tools:srcCompat="@drawable/advance_payment" />
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="65dp"
                     android:layout_gravity="bottom|center"
                     android:background="#FFFFFF"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Advance Payment Requests"
+                    android:text="Advance Payment"
                     android:textColor="#000000"
                     android:textColorHint="#FFFFFF"
+                    android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
             </FrameLayout>
@@ -185,31 +192,25 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
+                    android:layout_height="60dp"
                     android:background="#FFFFFF"
                     app:srcCompat="@drawable/due_payment"
                     tools:srcCompat="@drawable/due_payment" />
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="65dp"
                     android:layout_gravity="bottom|center"
                     android:background="#FFFFFF"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Due Payment Requests"
+                    android:text="Previous Due Clearance"
                     android:textColor="#000000"
                     android:textColorHint="#FFFFFF"
+                    android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
             </FrameLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal">
 
             <FrameLayout
                 android:id="@+id/frame7"
@@ -220,14 +221,14 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
+                    android:layout_height="60dp"
                     android:background="#FFFFFF"
                     app:srcCompat="@drawable/monthly_record"
                     tools:srcCompat="@drawable/monthly_record" />
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="65dp"
                     android:layout_gravity="bottom|center"
                     android:background="#FFFFFF"
                     android:gravity="center"
@@ -235,6 +236,7 @@
                     android:text="View/Edit Monthly Record"
                     android:textColor="#000000"
                     android:textColorHint="#FFFFFF"
+                    android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
             </FrameLayout>
@@ -248,14 +250,14 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
+                    android:layout_height="60dp"
                     android:background="#FFFFFF"
                     app:srcCompat="@drawable/balance"
                     tools:srcCompat="@drawable/balance" />
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="65dp"
                     android:layout_gravity="bottom|center"
                     android:background="#FFFFFF"
                     android:gravity="center"
@@ -263,9 +265,19 @@
                     android:text="Set Initial Balance"
                     android:textColor="#000000"
                     android:textColorHint="#FFFFFF"
+                    android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
             </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+
 
             <FrameLayout
                 android:id="@+id/frame4"
@@ -277,15 +289,15 @@
                 <ImageView
 
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
+                    android:layout_height="60dp"
                     android:background="#FFFFFF"
-                    app:srcCompat="@drawable/monthly_record"
-                    tools:srcCompat="@drawable/monthly_record" />
+                    app:srcCompat="@drawable/transaction"
+                    tools:srcCompat="@drawable/transaction" />
 
                 <TextView
 
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="65dp"
                     android:layout_gravity="bottom|center"
                     android:background="#FFFFFF"
                     android:gravity="center"
@@ -293,13 +305,102 @@
                     android:text="View All Transactions"
                     android:textColor="#000000"
                     android:textColorHint="#FFFFFF"
+                    android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:text="View All Transactions" />
 
             </FrameLayout>
 
+            <FrameLayout
+                android:id="@+id/frame10"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    app:srcCompat="@drawable/requests"
+                    tools:srcCompat="@drawable/requests" />
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:layout_gravity="bottom|center"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="View All Requests"
+                    android:textColor="#000000"
+                    android:textColorHint="#FFFFFF"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:text="View All Requests" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/frame11"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    app:srcCompat="@drawable/status"
+                    tools:srcCompat="@drawable/status" />
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:layout_gravity="bottom|center"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Maintenance Status"
+                    android:textColor="#000000"
+                    android:textColorHint="#FFFFFF"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/frame12"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    app:srcCompat="@drawable/record"
+                    tools:srcCompat="@drawable/record" />
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:layout_gravity="bottom|center"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Due / Advance record"
+                    android:textColor="#000000"
+                    android:textColorHint="#FFFFFF"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:text="Due / Advance record" />
+
+            </FrameLayout>
+
         </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
