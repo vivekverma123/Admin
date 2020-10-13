@@ -47,10 +47,12 @@ public class UserAdapter4 extends ArrayAdapter<Maintenance>
             TextView t2 = convertView.findViewById(R.id.textView17);
             TextView t3 = convertView.findViewById(R.id.textView18);
             TextView t4 = convertView.findViewById(R.id.textView19);
+            TextView t5 = convertView.findViewById(R.id.textView21);
 
             t1.setText(m1.getFlatNumber());
             t2.setText("₹" + m1.getAmt_paid());
             t3.setText("₹" + (m1.getContr() - m1.getAmt_paid()));
+            t5.setText(m1.getId());
 
             if(m1.getStatus()==0)
             {

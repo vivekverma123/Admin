@@ -155,9 +155,15 @@ public class ApproveRequestActivity extends AppCompatActivity {
                         d1.child("MaintenanceRecord").child(id).child(request.getFlatNo()).setValue(m1);
                         d1.child("Months").child(id).setValue(m2);
 
-                        String t_id = d1.child("Transactions").push().getKey();
-                        Transaction transaction = new Transaction(r1.getAmt(), 0, r1.getDate(), t_id, r1.getFlatNo());
-                        d1.child("Transactions").child(t_id).setValue(transaction);
+                        if(r1.getId_month().equals(snapshot.child("CurrentMonth").getValue(String.class))==false)
+                        {
+                            int a = snapshot.child("TotalDue").child(r1.getFlatNo()).getValue(Integer.class);
+                            d1.child("TotalDue").child(r1.getFlatNo()).setValue(a - r1.getAmt());
+                        }
+
+                        //String t_id = d1.child("Transactions").push().getKey();
+                        Transaction transaction = new Transaction(r1.getAmt(), 0, r1.getDate(), r1.getId(), r1.getFlatNo());
+                        d1.child("Transactions").child(r1.getId()).setValue(transaction);
                         Toast.makeText(ApproveRequestActivity.this,"Approved",Toast.LENGTH_LONG).show();
                     }
                     else
@@ -194,8 +200,8 @@ public class ApproveRequestActivity extends AppCompatActivity {
                     d1.child("Months").child(r1.getId_month()).setValue(m2);
 
                     String t_id = d1.child("Transactions").push().getKey();
-                    Transaction transaction = new Transaction(r1.getAmt(),1,r1.getDate(),t_id,r1.getFlatNo());
-                    d1.child("Transactions").child(t_id).setValue(transaction);
+                    Transaction transaction = new Transaction(r1.getAmt(), 1, r1.getDate(), r1.getId(), r1.getFlatNo());
+                    d1.child("Transactions").child(r1.getId()).setValue(transaction);
                     Toast.makeText(ApproveRequestActivity.this,"Approved",Toast.LENGTH_LONG).show();
                 }
                 else
@@ -233,8 +239,8 @@ public class ApproveRequestActivity extends AppCompatActivity {
                         d1.child("Months").child(r1.getId_month()).setValue(m2);
 
                         String t_id = d1.child("Transactions").push().getKey();
-                        Transaction transaction = new Transaction(r1.getAmt(), 2, r1.getDate(), t_id, r1.getFlatNo());
-                        d1.child("Transactions").child(t_id).setValue(transaction);
+                        Transaction transaction = new Transaction(r1.getAmt(), 2, r1.getDate(), r1.getId(), r1.getFlatNo());
+                        d1.child("Transactions").child(r1.getId()).setValue(transaction);
                         Toast.makeText(ApproveRequestActivity.this,"Approved",Toast.LENGTH_LONG).show();
                     }
                 }
@@ -257,7 +263,6 @@ public class ApproveRequestActivity extends AppCompatActivity {
 
                 DatabaseReference d1 = FirebaseDatabase.getInstance().getReference();
                 d1.child(child_id).child(request.getId()).setValue(request);
-
                 back();
             }
         });

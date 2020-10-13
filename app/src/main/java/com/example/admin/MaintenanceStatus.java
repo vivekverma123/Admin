@@ -36,13 +36,13 @@ public class MaintenanceStatus extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                    String id = dataSnapshot.child("CurrentMonth").getValue(String.class);
-
                     ArrayList<Maintenance> f1 = new ArrayList<>();
-                    for (DataSnapshot d1 : dataSnapshot.child("MaintenanceRecord").child(id).getChildren()) {
-
-                        Maintenance maintenance = d1.getValue(Maintenance.class);
-                        f1.add(maintenance);
+                    for (DataSnapshot d1 : dataSnapshot.child("MaintenanceRecord").getChildren())
+                    {
+                        for(DataSnapshot d2 : d1.getChildren()) {
+                            Maintenance maintenance = d2.getValue(Maintenance.class);
+                            f1.add(maintenance);
+                        }
                     }
                     UserAdapter4 u1 = new UserAdapter4(MaintenanceStatus.this, f1);
                     l1.setAdapter(u1);

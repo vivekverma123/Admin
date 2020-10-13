@@ -508,7 +508,7 @@ public class MainActivity extends AppCompatActivity {
                                                     d1.child("TotalDue").child(f1.getFlatNo()).setValue(amt1);
                                                 }
 
-                                                Maintenance m2 = new Maintenance(f1.getFlatNo(), 0, 0, m1.getTitle(), m1.getContr());
+                                                Maintenance m2 = new Maintenance(f1.getFlatNo(), 0, 0, m1.getM() + "/" + m1.getY(), m1.getContr());
                                                 int amt1 = dataSnapshot.child("AdvancedAmount").child(f1.getFlatNo()).getValue(Integer.class);
 
                                                 if (amt1 > 0) {
