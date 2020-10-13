@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@drawable/a"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -153,7 +153,6 @@
             android:orientation="horizontal">
 
 
-
             <FrameLayout
                 android:id="@+id/frame8"
                 android:layout_width="match_parent"
@@ -278,7 +277,6 @@
             android:orientation="horizontal">
 
 
-
             <FrameLayout
                 android:id="@+id/frame4"
                 android:layout_width="match_parent"
@@ -321,6 +319,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="60dp"
+                    android:background="#FFFFFF"
                     app:srcCompat="@drawable/requests"
                     tools:srcCompat="@drawable/requests" />
 
@@ -350,6 +349,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="60dp"
+                    android:background="#FFFFFF"
                     app:srcCompat="@drawable/status"
                     tools:srcCompat="@drawable/status" />
 
@@ -379,7 +379,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="60dp"
                     app:srcCompat="@drawable/record"
-                    tools:srcCompat="@drawable/record" />
+                    tools:srcCompat="@drawable/record"
+                    android:background="#FFFFFF" />
 
                 <TextView
 
@@ -416,13 +417,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.307">
 
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.1"
+            android:background="#5C1535"
+            android:text="Refresh"
+            android:textColor="#FFFFFF" />
+
         <TextView
             android:id="@+id/textView9"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:padding="10dp"
+            android:gravity="center_horizontal|top"
+            android:padding="7dp"
             android:text="Loading..."
             android:textColor="#FFFFFF"
             android:textSize="14dp"
@@ -501,5 +511,7 @@
                 android:textSize="14dp" />
         </LinearLayout>
     </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

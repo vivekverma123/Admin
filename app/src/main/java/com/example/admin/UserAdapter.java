@@ -39,7 +39,7 @@ public class UserAdapter extends ArrayAdapter<FlatOwner>
         mobNo.setText(flatOwner.getMobNo());
 
         if(position%2==0) {
-            convertView.setBackgroundColor(Color.parseColor("#C0D6E4"));
+            convertView.setBackgroundColor(Color.parseColor("#f48fb1"));
         }
         else
         {

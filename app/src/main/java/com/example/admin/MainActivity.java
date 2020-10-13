@@ -54,7 +54,18 @@ public class MainActivity extends AppCompatActivity {
 
             init();
 
+            generateMonth();
+
+
             //refresh();
+
+            Button b1 =  findViewById(R.id.button);
+            b1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    refresh();
+                }
+            });
 
             TextView t1 = findViewById(R.id.textView9);
             TextView t2 = findViewById(R.id.textView10);
@@ -245,7 +256,7 @@ public class MainActivity extends AppCompatActivity {
 
                             myRef.child("MaintenanceRecord").child(s1).child(flatNo).setValue(m2);
 
-                            refresh();
+                            //refresh();
 
                         }
 
@@ -422,7 +433,7 @@ public class MainActivity extends AppCompatActivity {
     public void generateMonth()
     {
         DatabaseReference d1 = FirebaseDatabase.getInstance().getReference();
-        d1.addValueEventListener(new ValueEventListener() {
+        d1.addListenerForSingleValueEvent(new ValueEventListener() {
 
 
             String s1 = "";
@@ -535,7 +546,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 if(dataSnapshot.child("CurrentMonth").exists()) {
-                    refresh();
+                    //refresh();
                 }
 
             }
@@ -622,6 +633,5 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
-        generateMonth();
     }
 }

@@ -43,7 +43,7 @@ public class UserAdapter7 extends ArrayAdapter<Amount>
         t2.setText("₹" + amount.getAmt());
 
         if(position%2==0) {
-            convertView.setBackgroundColor(Color.parseColor("#C0D6E4"));
+            convertView.setBackgroundColor(Color.parseColor("#bcaaa4"));
         }
         else {
             convertView.setBackgroundColor(Color.WHITE);

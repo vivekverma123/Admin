@@ -54,7 +54,7 @@ public class UserAdapter2 extends ArrayAdapter<Request>
         e2.setText(request.getRemarkClient());
 
         if(position%2==0) {
-            convertView.setBackgroundColor(Color.parseColor("#C0D6E4"));
+            convertView.setBackgroundColor(Color.parseColor("#ce93d8"));
         }
         else
         {

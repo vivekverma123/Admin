@@ -58,7 +58,7 @@ public class UserAdapter6 extends ArrayAdapter<Request>
 
 
         if(position%2==0) {
-            convertView.setBackgroundColor(Color.parseColor("#C0D6E4"));
+            convertView.setBackgroundColor(Color.parseColor("#ffab91"));
         }
         else
         {
