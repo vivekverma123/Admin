@@ -6,3 +6,5 @@ Android app designed for the admin (or accountant) of a hosing society where he 
   3. Advance Payments
   
 Admin also updates the accounts for  any expenses beared by the society which is visible to all flat owners in real time.
+
+Tech Stack Used: Android Studio, Java, XML, Constraint Layout, Firebase Database
