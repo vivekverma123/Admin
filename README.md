@@ -7,7 +7,7 @@
   4. Constraint Layout 
   5. Firebase Database
 
-### Android app designed for the admin (or accountant) of a hosing society where he can approve payment requests by verifying the attached receipts pertaining the following :-
+### Android app designed for the admin (or accountant) of the housing society where he can approve payment requests by verifying the attached receipts pertaining the following :-
   1. Maintenance
   2. Previous Due
   3. Advance Payments
